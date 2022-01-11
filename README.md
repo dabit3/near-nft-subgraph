@@ -2,7 +2,7 @@
 
 This project is an example of how you can build and deploy Graph Protocol APIs for [NEAR](https://near.org/).
 
-This subgraph indexes data from [Misfits](https://twitter.com/NEARMisfits) smart contract transactions and makes them queryable.
+This subgraph indexes data from [Misfits](https://explorer.near.org/accounts/misfits.tenk.near) smart contract transactions and makes them queryable.
 
 To deploy this API, follow these steps:
 
