@@ -4,10 +4,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ dabit3/nearone",
-    "create-local": "graph create --node http://localhost:8020/ dabit3/nearone",
-    "remove-local": "graph remove --node http://localhost:8020/ dabit3/nearone",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dabit3/nearone"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ username/apiname",
+    "create-local": "graph create --node http://localhost:8020/ username/apiname",
+    "remove-local": "graph remove --node http://localhost:8020/ username/apiname",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 username/apiname"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.25.1",

@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 features:
   - ipfsOnEthereumContracts
 dataSources:
@@ -8,7 +8,7 @@ dataSources:
     name: Contract
     network: near-mainnet
     source:
-      account: "misfits.tenk.near"
+      account: misfits.tenk.near
       startBlock: 53472065
     mapping:
       apiVersion: 0.0.5
@@ -17,4 +17,4 @@ dataSources:
         - Token
       receiptHandlers:
         - handler: handleReceipt
-      file: ./src/mapping.ts
+      file: Contract/Contract.wasm
