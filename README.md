@@ -27,3 +27,20 @@ graph auth https://api.thegraph.com/deploy/ <ACCESS_TOKEN>
 ```sh
 yarn deploy
 ```
+
+6. Run a query
+
+```graphql
+{
+  tokens(first: 5) {
+    id
+    owner
+    tokenId
+    image
+    metadata
+    image
+    kind
+    seed
+  }
+}
+```
