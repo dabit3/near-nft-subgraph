@@ -1,6 +1,6 @@
 # NEAR Protocol subgraph
 
-This project is an example of how you can build and deploy Graph Protocol APIs for NEAR.
+This project is an example of how you can build and deploy Graph Protocol APIs for [NEAR](https://near.org/).
 
 This subgraph indexes data from [Misfits](https://twitter.com/NEARMisfits) smart contract transactions and makes them queryable.
 
