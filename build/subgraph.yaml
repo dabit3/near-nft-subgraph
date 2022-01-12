@@ -6,7 +6,7 @@ features:
   - fullTextSearch
 dataSources:
   - kind: near
-    name: Contract
+    name: Token
     network: near-mainnet
     source:
       account: misfits.tenk.near
@@ -19,4 +19,4 @@ dataSources:
         - User
       receiptHandlers:
         - handler: handleReceipt
-      file: Contract/Contract.wasm
+      file: Token/Token.wasm

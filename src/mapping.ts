@@ -7,7 +7,7 @@ export function handleReceipt(
 ): void {
   const actions = receipt.receipt.actions;
   for (let i = 0; i < actions.length; i++) {
-    handleAction(actions[i], receipt);
+    handleAction(actions[i], receipt)
   }
 }
 
