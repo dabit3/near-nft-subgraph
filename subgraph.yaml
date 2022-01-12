@@ -3,6 +3,7 @@ schema:
   file: ./schema.graphql
 features:
   - ipfsOnEthereumContracts
+  - fullTextSearch
 dataSources:
   - kind: near
     name: Contract

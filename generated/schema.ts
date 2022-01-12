@@ -17,6 +17,11 @@ export class Token extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("owner", Value.fromString(""));
+    this.set("ownerId", Value.fromString(""));
+    this.set("tokenId", Value.fromString(""));
+    this.set("image", Value.fromString(""));
+    this.set("metadata", Value.fromString(""));
+    this.set("kind", Value.fromString(""));
   }
 
   save(): void {
@@ -54,72 +59,49 @@ export class Token extends Entity {
     this.set("owner", Value.fromString(value));
   }
 
-  get tokenId(): string | null {
+  get ownerId(): string {
+    let value = this.get("ownerId");
+    return value!.toString();
+  }
+
+  set ownerId(value: string) {
+    this.set("ownerId", Value.fromString(value));
+  }
+
+  get tokenId(): string {
     let value = this.get("tokenId");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value!.toString();
   }
 
-  set tokenId(value: string | null) {
-    if (!value) {
-      this.unset("tokenId");
-    } else {
-      this.set("tokenId", Value.fromString(<string>value));
-    }
+  set tokenId(value: string) {
+    this.set("tokenId", Value.fromString(value));
   }
 
-  get image(): string | null {
+  get image(): string {
     let value = this.get("image");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value!.toString();
   }
 
-  set image(value: string | null) {
-    if (!value) {
-      this.unset("image");
-    } else {
-      this.set("image", Value.fromString(<string>value));
-    }
+  set image(value: string) {
+    this.set("image", Value.fromString(value));
   }
 
-  get metadata(): string | null {
+  get metadata(): string {
     let value = this.get("metadata");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value!.toString();
   }
 
-  set metadata(value: string | null) {
-    if (!value) {
-      this.unset("metadata");
-    } else {
-      this.set("metadata", Value.fromString(<string>value));
-    }
+  set metadata(value: string) {
+    this.set("metadata", Value.fromString(value));
   }
 
-  get kind(): string | null {
+  get kind(): string {
     let value = this.get("kind");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value!.toString();
   }
 
-  set kind(value: string | null) {
-    if (!value) {
-      this.unset("kind");
-    } else {
-      this.set("kind", Value.fromString(<string>value));
-    }
+  set kind(value: string) {
+    this.set("kind", Value.fromString(value));
   }
 
   get seed(): i32 {

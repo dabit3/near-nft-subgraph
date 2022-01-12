@@ -51,28 +51,29 @@ function handleAction(
         if (!token) {
           token = new Token(tokenId)
           token.tokenId = tokenId
-        }
-
-        token.owner = owner_id.toString()
-
-        token.image = ipfsHash + '/' + tokenId + '.png'
-        let metadata = ipfsHash + '/' + tokenId + '.json'
-        token.metadata = metadata
-
-        let metadataResult = ipfs.cat(metadata)
-        if (metadataResult) {
-          let value = json.fromBytes(metadataResult).toObject()
-          if (value) {
-            const kind = value.get('kind')
-            if (kind) {
-              token.kind = kind.toString()
-            }
-            const seed = value.get('seed')
-            if (seed) {
-              token.seed = seed.toI64() as i32
+          
+          token.image = ipfsHash + '/' + tokenId + '.png'
+          let metadata = ipfsHash + '/' + tokenId + '.json'
+          token.metadata = metadata
+  
+          let metadataResult = ipfs.cat(metadata)
+          if (metadataResult) {
+            let value = json.fromBytes(metadataResult).toObject()
+            if (value) {
+              const kind = value.get('kind')
+              if (kind) {
+                token.kind = kind.toString()
+              }
+              const seed = value.get('seed')
+              if (seed) {
+                token.seed = seed.toI64() as i32
+              }
             }
           }
         }
+
+        token.ownerId = owner_id.toString()
+        token.owner = owner_id.toString()
 
         let user = User.load(owner_id.toString())
         if (!user) {

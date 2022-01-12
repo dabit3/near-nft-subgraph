@@ -1,6 +1,15 @@
+type _Schema_
+  @fulltext(
+    name: "tokenSearch"
+    language: en
+    algorithm: rank
+    include: [{ entity: "Token", fields: [{ name: "ownerId" }, { name: "kind" }] }]
+  )
+
 type Token @entity {
   id: ID!
   owner: User!
+  ownerId: String!
   tokenId: String!
   image: String!
   metadata: String!
