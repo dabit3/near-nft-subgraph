@@ -1,9 +1,14 @@
 type Token @entity {
   id: ID!
-  owner: String
-  tokenId: String
-  image: String
-  metadata: String
-  kind: String
-  seed: Int
+  owner: User!
+  tokenId: String!
+  image: String!
+  metadata: String!
+  kind: String!
+  seed: Int!
+}
+
+type User @entity {
+  id: ID!
+  tokens: [Token!]! @derivedFrom(field: "owner")
 }

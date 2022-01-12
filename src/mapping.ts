@@ -1,5 +1,5 @@
 import { near, JSONValue, json, ipfs } from "@graphprotocol/graph-ts"
-import { Token } from "../generated/schema"
+import { Token, User } from "../generated/schema"
 import { log } from '@graphprotocol/graph-ts'
 
 export function handleReceipt(
@@ -26,40 +26,38 @@ function handleAction(
   if (methodName == 'buy' || methodName == 'nft_mint_one') {
     for (let logIndex = 0; logIndex < outcome.logs.length; logIndex++) {
       let outcomeLog = outcome.logs[logIndex].toString();
-  
+
       log.info('outcomeLog {}', [outcomeLog])
-  
+
       let parsed = outcomeLog.replace('EVENT_JSON:', '')
-  
+
       let jsonData = json.try_fromString(parsed)
       const jsonObject = jsonData.value.toObject()
-  
+
       let eventData = jsonObject.get('data')
       if (eventData) {
         let eventArray:JSONValue[] = eventData.toArray()
-  
+
         let data = eventArray[0].toObject()
         const tokenIds = data.get('token_ids')
         const owner_id = data.get('owner_id')
-        if (!tokenIds) return
+        if (!tokenIds || !owner_id) return
 
         let ids:JSONValue[] = tokenIds.toArray()
         const tokenId = ids[0].toString()
 
-        let entity = Token.load(tokenId)
+        let token = Token.load(tokenId)
 
-        if (!entity) {
-          entity = new Token(tokenId)
-          entity.tokenId = tokenId
+        if (!token) {
+          token = new Token(tokenId)
+          token.tokenId = tokenId
         }
-    
-        if (owner_id) {
-          entity.owner = owner_id.toString()
-        }
-    
-        entity.image = ipfsHash + '/' + tokenId + '.png'
+
+        token.owner = owner_id.toString()
+
+        token.image = ipfsHash + '/' + tokenId + '.png'
         let metadata = ipfsHash + '/' + tokenId + '.json'
-        entity.metadata = metadata
+        token.metadata = metadata
 
         let metadataResult = ipfs.cat(metadata)
         if (metadataResult) {
@@ -67,15 +65,22 @@ function handleAction(
           if (value) {
             const kind = value.get('kind')
             if (kind) {
-              entity.kind = kind.toString()
+              token.kind = kind.toString()
             }
             const seed = value.get('seed')
             if (seed) {
-              entity.seed = seed.toI64() as i32
+              token.seed = seed.toI64() as i32
             }
           }
         }
-        entity.save()
+
+        let user = User.load(owner_id.toString())
+        if (!user) {
+          user = new User(owner_id.toString())
+        }
+
+        token.save()
+        user.save()
       }
     }
   }
