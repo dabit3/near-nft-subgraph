@@ -32,9 +32,9 @@ yarn deploy
 
 ```graphql
 {
-  tokens(first: 5) {
+  tokens {
     id
-    owner
+    ownerId
     tokenId
     image
     metadata
